@@ -7,6 +7,8 @@
  * @package global-auto
  */
 
+add_filter('show_admin_bar', '__return_false');
+
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
 	define( '_S_VERSION', '1.0.0' );
@@ -151,6 +153,15 @@ function global_auto_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+    wp_enqueue_style( 'remodal', get_template_directory_uri() . '/css/remodal.css', array(), _S_VERSION );
+    wp_enqueue_style( 'remodal-theme', get_template_directory_uri() . '/css/remodal-default-theme.css', array(), _S_VERSION );
+
+    wp_enqueue_style( 'slick', get_template_directory_uri() . '/css/slick/slick.css', array(), _S_VERSION );
+    wp_enqueue_style( 'slick-theme', get_template_directory_uri() . '/css/slick/slick-theme.css', array('slick'), _S_VERSION );
+
+    wp_enqueue_script( 'remodal-js', get_template_directory_uri() . '/js/remodal.js', array('jquery'), _S_VERSION, true );
+    wp_enqueue_script( 'slick-js', get_template_directory_uri() . '/js/slick.min.js', array('jquery'), _S_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'global_auto_scripts' );
 
@@ -180,4 +191,9 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+/**
+ * Custom post types
+ */
+require get_template_directory() . '/inc/custom-post-types.php';
 
