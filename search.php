@@ -9,7 +9,12 @@
 
 get_header();
 ?>
-
+    <style>
+        header {
+            position: static;
+            background: rgba(155, 4, 4, 0.01);
+        }
+    </style>
 	<main id="primary" class="site-main">
 
 		<?php if ( have_posts() ) : ?>
@@ -49,5 +54,4 @@ get_header();
 	</main><!-- #main -->
 
 <?php
-get_sidebar();
 get_footer();
